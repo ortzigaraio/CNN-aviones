@@ -1,0 +1,17 @@
+# Secretos y entorno local
+.env
+.venv/
+
+# Registro local de experimentos (MLflow)
+mlruns/
+
+# Cachés de Python, pytest y ruff
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Datos: los gestiona DVC, en git solo los ficheros .dvc y .gitignore
+/data/*
+!/data/*.dvc
+!/data/.gitignore

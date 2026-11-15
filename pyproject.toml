@@ -1,0 +1,39 @@
+[project]
+name = "avion-osint"
+version = "0.1.0"
+description = "Detección y clasificación de aviones en ortofotos, contrastada con ADS-B y noticias públicas (análisis retrospectivo)."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pyyaml",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+    "dvc",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/avion_osint"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+
+[tool.ruff.format]
+# Ruff formatea también los bloques de código de los Markdown; los de docs/ son
+# firmas ilustrativas de las especificaciones y no se tocan.
+exclude = ["*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

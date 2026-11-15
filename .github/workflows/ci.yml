@@ -1,0 +1,27 @@
+# Integración continua: en cada push y cada PR instala el entorno y pasa lint, formato y tests.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  comprobaciones:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Instalar el entorno
+        run: uv sync --locked
+
+      - name: Lint (ruff check)
+        run: uv run ruff check .
+
+      - name: Formato (ruff format --check)
+        run: uv run ruff format --check .
+
+      - name: Tests (pytest)
+        run: uv run pytest

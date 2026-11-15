@@ -1,0 +1,52 @@
+# Aeródromos candidatos del proyecto (docs/specs/fase-0.md, sección 6).
+#
+# Coordenadas: punto de referencia del aeródromo (ARP, el punto que fija oficialmente su
+# posición), tomado del AIP de España publicado por ENAIRE, apartado AD 2.2 de cada
+# aeródromo (https://aip.enaire.es/AIP/AIP-en.html), consultado el 2026-11-15.
+# Se deja en comentario el valor original (grados, minutos, segundos) y su fecha de vigencia.
+#
+# tipo: "civil", "militar" o "mixto". Todo lo que no sea "civil" solo admite resultados
+# agregados por aeródromo y día/semana (decisión D4).
+
+aerodromos:
+  - icao: LEMD
+    nombre: Adolfo Suárez Madrid-Barajas
+    lat: 40.472222   # 402820N (AIP AD 2-LEMD, WEF 29-OCT-26)
+    lon: -3.560833   # 0033339W
+    radio_km: 5
+    tipo: civil
+
+  - icao: LEBL
+    nombre: Barcelona-El Prat
+    lat: 41.296944   # 411749N (AIP AD 2-LEBL, WEF 01-OCT-26)
+    lon: 2.078333    # 0020442E
+    radio_km: 5
+    tipo: civil
+
+  - icao: LEPA
+    nombre: Palma de Mallorca
+    lat: 39.551667   # 393306N (AIP AD 2-LEPA/LESJ, WEF 29-OCT-26)
+    lon: 2.738889    # 0024420E
+    radio_km: 5
+    tipo: civil
+
+  - icao: LETL
+    nombre: Teruel
+    lat: 40.411944   # 402443N (AIP AD 2-LETL, fecha de página 06-AUG-26)
+    lon: -1.2175     # 0011303W
+    radio_km: 5
+    tipo: civil
+
+  - icao: LEVC
+    nombre: Valencia
+    lat: 39.489444   # 392922N (AIP AD 2-LEVC, WEF 29-OCT-26)
+    lon: -0.481667   # 0002854W
+    radio_km: 5
+    tipo: civil
+
+  - icao: LEZG
+    nombre: Zaragoza
+    lat: 41.666111   # 413958N (AIP AD 2-LEZG, WEF 01-OCT-26)
+    lon: -1.041667   # 0010230W
+    radio_km: 5
+    tipo: mixto
