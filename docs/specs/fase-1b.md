@@ -184,3 +184,24 @@ Los umbrales son criterio de diseño, no vienen de la literatura. La decisión f
 9. Informe y cierre.
 
 Fuera de alcance: entrenar o ajustar modelos, generalizar la descarga de ADS-B, MCP, clasificar por tipo fino, cualquier aeródromo no civil.
+
+## 10. Anexo (2026-11-15): cambios tras las dudas y la prueba con dos fotogramas
+
+Resuelve `fase-1b-dudas.md`. Donde contradiga lo anterior, manda este anexo. Decisiones D16 a D21.
+
+### Comprobado por Fable con dos fotogramas (`006-1459` y `006-1460`)
+
+* Son imágenes de 14.790 × 23.010 píxeles a unos 0,237 m/píxel, en ETRS89 / UTM 30N (EPSG:25830), con norte arriba. Cada una cubre unos 3,5 × 5,5 km.
+* Traen coordenadas (una transformación afín en la cabecera), pero **ninguna etiqueta de fecha ni de hora**.
+* El mismo avión cae en el mismo sitio en los dos fotogramas con un error de 1-2 m.
+* Las sombras apuntan al este-noreste y son cortas (sol a unos 50° de altura). Con la tabla solar del 28/07/2023 eso corresponde a **las 15:00 UTC aproximadamente (17:00 hora local), con un margen de ± 30 min**. Es una estimación a ojo, no una medida: hay que medirla bien (tarea 3 de abajo).
+
+### Cambios
+
+1. **Imagen (D16):** mosaico propio a partir de los fotogramas del 28/07. Para cada punto, el fotograma de centro más cercano. Salida: `data/fase-1b/mosaico.tif` (COG, EPSG:25830, 0,25 m), más `data/fase-1b/mosaico_fotogramas.geojson` con la zona que aporta cada fotograma. No hace falta bajar los 49: basta el subconjunto mínimo que cubra el recinto (las cabeceras se pueden leer con peticiones parciales, sin bajar el fichero).
+2. **Reloj por solape (nuevo, se suma a los tres métodos del paso A):** dos fotogramas consecutivos se toman con segundos de diferencia. Un avión que rueda sale desplazado entre uno y otro; uno parado, no. Sirve para marcar `en_movimiento` sin ambigüedad.
+3. **Hora por sombra:** medir el acimut en al menos 5 objetos verticales altos (torres de iluminación, torre de control) repartidos por el aeropuerto, usando en cada uno la base y la punta de la sombra **en el suelo**. Para distinguir la sombra de la inclinación por perspectiva del propio objeto, compararlo en dos fotogramas solapados: la sombra no se mueve, el objeto sí. Restar 0,36° (D20).
+4. **Llegadas y salidas (D17)** y **verdad fuerte (D18):** como dicen las decisiones. `inferir_en_tierra` se cambia para que una estancia sin llegada o sin salida observada sea débil; sus tests se actualizan.
+5. **Categorías (D19):** límites como dice la decisión.
+6. **Detector:** `yolo26s-obb.pt` de la cuenta oficial de Ultralytics en Hugging Face, sobre el mosaico. Se puede ejecutar antes de tener el conteo manual, pero **el autor no debe ver sus resultados hasta haber contado**: se guardan en `data/` y no se enseñan ni se resumen en el chat.
+7. **ADS-B:** sigue sin fuente accesible desde el entorno de trabajo. Alternativa a adsb.lol comprobada: la API de OpenSky responde desde aquí y, sin cuenta, contesta «You cannot access historical flights» a las llegadas por aeropuerto; con una cuenta gratuita podría darlas (sin comprobar). Daría llegadas y salidas directamente, sin la regla D17.

@@ -96,3 +96,7 @@ No se ha consultado: es `mixto` y la especificación lo deja fuera de la validac
 * Fecha de un solo día sobre el aeropuerto (en la malla): LEMD 2023, LEBL 2018, LEPA 2024, LEPA 2021, LEPA 2018.
 * Si OpenSky da el acceso de investigador, todas las fechas desde 2017 sirven. Si solo queda adsb.lol, sirven únicamente LEMD 2023 y las de 2024 (LEBL, LEPA, LETL, LEVC).
 * Teruel tiene siempre el aeropuerto repartido en varios días, hasta semanas: para «verdad fuerte» de larga estancia puede servir igual, pero hay que tratar cada zona con su fecha.
+
+## Corrección (2026-11-15, Fase 1b)
+
+La fila de LEMD 2023 decía «no partido». Con una malla más amplia aparecen, en el extremo norte del recinto (de 40,515° N en adelante), 8 fotogramas del **26/07/2023** además de los del 28/07. Los del 28/07 cubren todo el recinto, así que la Fase 1b usa solo esos fotogramas y no el mosaico del IGN (decisión D16).
