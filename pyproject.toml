@@ -3,8 +3,10 @@ name = "avion-osint"
 version = "0.1.0"
 description = "Detección y clasificación de aviones en ortofotos, contrastada con ADS-B y noticias públicas (análisis retrospectivo)."
 readme = "README.md"
+license = "AGPL-3.0-or-later"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "pandas>=3.1.1",
     "pyyaml",
 ]
 

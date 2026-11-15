@@ -1,0 +1,103 @@
+# Tipo OACI de aeronave -> categoría por longitud (docs/specs/fase-1b.md, sección 3).
+#
+# Umbrales de la spec: ligero < 20 m · regional 20-30 m · pasillo_unico 30-45 m ·
+# fuselaje_ancho > 45 m. La categoría se asigna SOLO por la longitud total, aunque el
+# nombre no case con el uso comercial del avión (p. ej. un Embraer 190 o un Q400 salen
+# como pasillo_unico; un B757, de pasillo único, sale como fuselaje_ancho; un
+# Gulfstream IV, reactor de negocios, sale como regional).
+#
+# AVISO: las longitudes salen del conocimiento de quien escribió este fichero y NO
+# están contrastadas con una fuente (fichas del fabricante, EASA o similar). Antes de
+# dar resultados definitivos hay que verificarlas, sobre todo las cercanas a un umbral
+# (marcadas con «cerca del umbral»).
+#
+# Lista: solo tipos habituales en aeropuertos españoles (aerolíneas, carga y aviación
+# general/negocios). Un tipo que no esté aquí se trata como «desconocido».
+
+tipos:
+  # --- Pasillo único (30-45 m) ---
+  A318: {longitud_m: 31.44, categoria: pasillo_unico}
+  A319: {longitud_m: 33.84, categoria: pasillo_unico}
+  A19N: {longitud_m: 33.84, categoria: pasillo_unico}
+  A320: {longitud_m: 37.57, categoria: pasillo_unico}
+  A20N: {longitud_m: 37.57, categoria: pasillo_unico}
+  A321: {longitud_m: 44.51, categoria: pasillo_unico}  # cerca del umbral de 45 m
+  A21N: {longitud_m: 44.51, categoria: pasillo_unico}  # cerca del umbral de 45 m
+  BCS1: {longitud_m: 35.00, categoria: pasillo_unico}  # Airbus A220-100
+  BCS3: {longitud_m: 38.70, categoria: pasillo_unico}  # Airbus A220-300
+  B733: {longitud_m: 33.40, categoria: pasillo_unico}
+  B734: {longitud_m: 36.40, categoria: pasillo_unico}
+  B737: {longitud_m: 33.60, categoria: pasillo_unico}  # 737-700
+  B738: {longitud_m: 39.50, categoria: pasillo_unico}  # 737-800
+  B739: {longitud_m: 42.10, categoria: pasillo_unico}
+  B38M: {longitud_m: 39.50, categoria: pasillo_unico}  # 737 MAX 8
+  B39M: {longitud_m: 42.20, categoria: pasillo_unico}  # 737 MAX 9
+  E175: {longitud_m: 31.70, categoria: pasillo_unico}
+  E190: {longitud_m: 36.20, categoria: pasillo_unico}
+  E195: {longitud_m: 38.70, categoria: pasillo_unico}
+  E290: {longitud_m: 36.20, categoria: pasillo_unico}
+  E295: {longitud_m: 41.50, categoria: pasillo_unico}
+  CRJ9: {longitud_m: 36.20, categoria: pasillo_unico}  # CRJ900
+  CRJX: {longitud_m: 39.10, categoria: pasillo_unico}  # CRJ1000
+  DH8D: {longitud_m: 32.80, categoria: pasillo_unico}  # Dash 8 Q400
+  GLEX: {longitud_m: 30.30, categoria: pasillo_unico}  # Bombardier Global; cerca del umbral de 30 m
+  GLF6: {longitud_m: 30.40, categoria: pasillo_unico}  # Gulfstream G650; cerca del umbral de 30 m
+
+  # --- Regional (20-30 m) ---
+  AT43: {longitud_m: 22.67, categoria: regional}  # ATR 42-300
+  AT45: {longitud_m: 22.67, categoria: regional}  # ATR 42-500
+  AT46: {longitud_m: 22.67, categoria: regional}  # ATR 42-600
+  AT72: {longitud_m: 27.17, categoria: regional}
+  AT75: {longitud_m: 27.17, categoria: regional}  # ATR 72-500
+  AT76: {longitud_m: 27.17, categoria: regional}  # ATR 72-600
+  CRJ2: {longitud_m: 26.80, categoria: regional}
+  E170: {longitud_m: 29.90, categoria: regional}  # cerca del umbral de 30 m
+  GLF4: {longitud_m: 26.90, categoria: regional}  # Gulfstream IV
+  GLF5: {longitud_m: 29.40, categoria: regional}  # Gulfstream V; cerca del umbral de 30 m
+  FA7X: {longitud_m: 23.20, categoria: regional}  # Falcon 7X
+  F900: {longitud_m: 20.20, categoria: regional}  # Falcon 900; cerca del umbral de 20 m
+  F2TH: {longitud_m: 20.20, categoria: regional}  # Falcon 2000; cerca del umbral de 20 m
+  CL60: {longitud_m: 20.90, categoria: regional}  # Challenger 600-650; cerca del umbral de 20 m
+  CL35: {longitud_m: 20.90, categoria: regional}  # Challenger 350; cerca del umbral de 20 m
+
+  # --- Ligero (< 20 m) ---
+  C68A: {longitud_m: 19.00, categoria: ligero}  # Citation Latitude; cerca del umbral de 20 m
+  C56X: {longitud_m: 15.80, categoria: ligero}  # Citation Excel/XLS
+  C525: {longitud_m: 13.00, categoria: ligero}  # CitationJet
+  C25A: {longitud_m: 14.50, categoria: ligero}  # CJ2
+  C25B: {longitud_m: 15.60, categoria: ligero}  # CJ3
+  E50P: {longitud_m: 12.80, categoria: ligero}  # Phenom 100
+  E55P: {longitud_m: 15.90, categoria: ligero}  # Phenom 300
+  LJ45: {longitud_m: 17.70, categoria: ligero}
+  PC24: {longitud_m: 16.90, categoria: ligero}
+  PC12: {longitud_m: 14.40, categoria: ligero}
+  BE20: {longitud_m: 13.40, categoria: ligero}  # King Air 200
+  TBM9: {longitud_m: 10.70, categoria: ligero}
+  P68: {longitud_m: 9.40, categoria: ligero}
+  DA42: {longitud_m: 8.60, categoria: ligero}
+  SR22: {longitud_m: 7.90, categoria: ligero}
+  C172: {longitud_m: 8.30, categoria: ligero}
+  C152: {longitud_m: 7.30, categoria: ligero}
+  P28A: {longitud_m: 7.30, categoria: ligero}
+
+  # --- Fuselaje ancho (> 45 m) ---
+  B752: {longitud_m: 47.30, categoria: fuselaje_ancho}  # B757-200: pasillo único, pero > 45 m
+  A306: {longitud_m: 54.10, categoria: fuselaje_ancho}  # A300-600 (carga)
+  A332: {longitud_m: 58.80, categoria: fuselaje_ancho}
+  A333: {longitud_m: 63.70, categoria: fuselaje_ancho}
+  A339: {longitud_m: 63.70, categoria: fuselaje_ancho}
+  A343: {longitud_m: 63.70, categoria: fuselaje_ancho}
+  A346: {longitud_m: 75.30, categoria: fuselaje_ancho}
+  A359: {longitud_m: 66.80, categoria: fuselaje_ancho}
+  A35K: {longitud_m: 73.80, categoria: fuselaje_ancho}
+  A388: {longitud_m: 72.70, categoria: fuselaje_ancho}
+  B763: {longitud_m: 54.90, categoria: fuselaje_ancho}
+  B764: {longitud_m: 61.40, categoria: fuselaje_ancho}
+  B772: {longitud_m: 63.70, categoria: fuselaje_ancho}
+  B77W: {longitud_m: 73.90, categoria: fuselaje_ancho}
+  B77L: {longitud_m: 63.70, categoria: fuselaje_ancho}  # 777-200LR / 777F
+  B744: {longitud_m: 70.70, categoria: fuselaje_ancho}
+  B748: {longitud_m: 76.30, categoria: fuselaje_ancho}
+  B788: {longitud_m: 56.70, categoria: fuselaje_ancho}
+  B789: {longitud_m: 62.80, categoria: fuselaje_ancho}
+  B78X: {longitud_m: 68.30, categoria: fuselaje_ancho}
