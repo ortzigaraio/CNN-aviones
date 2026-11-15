@@ -17,12 +17,13 @@ Formato: fecha, decisión, alternativas descartadas, motivo. Las decisiones de d
 | D11 | 2026-11-15 | Aeropuertos civiles del núcleo: **LEMD** (2023; es la foto de la Fase 1b, dato de desarrollo), **LEPA** (2024, 2021, 2018) y **LEBL** (2018). **LETL** como caso de larga estancia. LEVC descartado. Las fechas anteriores a 2023 dependen de conseguir el acceso histórico de OpenSky. | Mantener LEVC; usar las fechas de varios días de LEBL y LEMD. | Aplicación de D10 a las fechas verificadas en `docs/sitios.md`. Con solo adsb.lol quedan LEMD 2023 y LEPA 2024. |
 | D12 | 2026-11-15 | ACLED **no** se usa como entrada del modelo de lenguaje ni se sirve por el MCP 2. La capa de contexto se hace con GDELT y comunicados oficiales. **Pendiente de confirmación del autor.** | Pedir permiso escrito a ACLED; usarlo igualmente. | Su EULA (sección 7.1) prohíbe usar los datos como base de conocimiento de un modelo sin permiso escrito. Resuelve la duda 1 de la Fase 0. Si el autor consigue el permiso, se revisa. |
 | D13 | 2026-11-15 | `ruff format` no toca los `.md`; telemetría de DVC desactivada. | Dejar que ruff reformatee los ejemplos de las specs; dejar la telemetría por defecto. | Los bloques de las specs son firmas ilustrativas. La telemetría no aporta nada al proyecto. Resuelve las dudas 4 y 5. |
+| D14 | 2026-11-15 | Se entrena en local con la GPU del autor (RTX 3070, 8 GB) y, si no basta, en Kaggle. Los modelos y tamaños de lote se eligen para caber en 8 GB. | Colab; GPU de la universidad. | Decisión del autor. 8 GB bastan para un detector YOLO pequeño o mediano y un clasificador ligero. |
+| D15 | 2026-11-15 | El repositorio es público. Por usar Ultralytics (AGPL-3.0), el repo se publica bajo AGPL-3.0; el fichero `LICENSE` se añade al empezar la Fase 1b. Los datos no se suben (van por DVC) y los modelos entrenados con DOTA, DIOR, MAR20 o xView quedan como de uso no comercial. | Repo privado; otro detector con licencia más permisiva. | Decisión del autor. AGPL obliga a publicar el código bajo la misma licencia, lo que encaja con un TFG público. |
 
 ## Pendientes de decidir
 
 | Tema | Quién decide | Cuándo |
 |---|---|---|
-| Dónde se entrena (GPU) y remoto de DVC | Autor | Antes de la Fase 2 |
-| Repositorio público o privado y licencia del repo | Autor | Antes de usar pesos de Ultralytics (Fase 1b) |
+| Remoto de DVC (propuesta: una carpeta o disco en el PC del autor) | Autor | Al descargar los primeros datos (Fase 1b) |
 | Bases y ejercicios para anomalías | Fable, con la cobertura ADS-B medida en la Fase 1 | Spec de la Fase 5 |
 | Taxonomía de tipos (ver revisión del encargo, punto 1) | Fable | Spec de la Fase 3 |
