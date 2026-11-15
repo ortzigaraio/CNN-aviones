@@ -13,6 +13,10 @@ Formato: fecha, decisión, alternativas descartadas, motivo. Las decisiones de d
 | D7 | 2026-11-15 | La Fase 1b se hace en Madrid-Barajas (LEMD); reservas: Barcelona (LEBL), Palma (LEPA). Condicionado a que la fecha de la ortofoto tenga ADS-B disponible. | Teruel (LETL) como primer sitio. | Barajas tiene la mejor cobertura ADS-B y más de cien aviones por foto. Teruel (estancias de meses) es mejor para verdad fuerte pero exige mucho histórico; se reserva para la Fase 4. |
 | D8 | 2026-11-15 | Los umbrales de decisión de la Fase 1b quedan fijados en `docs/specs/fase-1b.md` antes de ver ningún dato. | Decidir a la vista del resultado. | Evita ajustar el criterio al resultado. |
 | D9 | 2026-11-15 | La ortofoto usada en la Fase 1b se considera dato de desarrollo: en la Fase 4 se reporta aparte y no cuenta para el resultado central. | Reutilizarla como una más. | Se habrá mirado y usado para ajustar el método. |
+| D10 | 2026-11-15 | «Fecha de vuelo conocida» significa que todos los fotogramas que cubren el aeropuerto son de **un solo día**. Excepción: Teruel (LETL), donde se admiten varios días porque los aviones pasan allí meses. | Admitir cualquier aeropuerto con fecha de día aunque mezcle varios. | Con días mezclados no se sabe qué día corresponde a cada zona de la foto. Resuelve la duda 2 de la Fase 0. |
+| D11 | 2026-11-15 | Aeropuertos civiles del núcleo: **LEMD** (2023; es la foto de la Fase 1b, dato de desarrollo), **LEPA** (2024, 2021, 2018) y **LEBL** (2018). **LETL** como caso de larga estancia. LEVC descartado. Las fechas anteriores a 2023 dependen de conseguir el acceso histórico de OpenSky. | Mantener LEVC; usar las fechas de varios días de LEBL y LEMD. | Aplicación de D10 a las fechas verificadas en `docs/sitios.md`. Con solo adsb.lol quedan LEMD 2023 y LEPA 2024. |
+| D12 | 2026-11-15 | ACLED **no** se usa como entrada del modelo de lenguaje ni se sirve por el MCP 2. La capa de contexto se hace con GDELT y comunicados oficiales. **Pendiente de confirmación del autor.** | Pedir permiso escrito a ACLED; usarlo igualmente. | Su EULA (sección 7.1) prohíbe usar los datos como base de conocimiento de un modelo sin permiso escrito. Resuelve la duda 1 de la Fase 0. Si el autor consigue el permiso, se revisa. |
+| D13 | 2026-11-15 | `ruff format` no toca los `.md`; telemetría de DVC desactivada. | Dejar que ruff reformatee los ejemplos de las specs; dejar la telemetría por defecto. | Los bloques de las specs son firmas ilustrativas. La telemetría no aporta nada al proyecto. Resuelve las dudas 4 y 5. |
 
 ## Pendientes de decidir
 
@@ -20,6 +24,5 @@ Formato: fecha, decisión, alternativas descartadas, motivo. Las decisiones de d
 |---|---|---|
 | Dónde se entrena (GPU) y remoto de DVC | Autor | Antes de la Fase 2 |
 | Repositorio público o privado y licencia del repo | Autor | Antes de usar pesos de Ultralytics (Fase 1b) |
-| Aeropuertos civiles definitivos (3-4) | Fable, con las fechas PNOA verificadas en la Fase 0 | Cierre de la Fase 0 |
 | Bases y ejercicios para anomalías | Fable, con la cobertura ADS-B medida en la Fase 1 | Spec de la Fase 5 |
 | Taxonomía de tipos (ver revisión del encargo, punto 1) | Fable | Spec de la Fase 3 |
