@@ -31,6 +31,8 @@ from comun import CRS, DATOS, MOSAICO, RAIZ
 from rasterio.enums import Resampling
 from rasterio.windows import Window
 
+from avion_osint.vision.geometria import area, interseccion
+
 URL_PESOS = (
     "https://huggingface.co/Ultralytics/YOLO26/resolve/"
     "070ac3c51435984d992ba92eb3f234daf4e4500d/yolo26s-obb.pt"
@@ -67,42 +69,6 @@ def obtener_pesos() -> None:
         urllib.request.urlretrieve(URL_PESOS, PESOS)
     if sha256(PESOS) != SHA256_PESOS:
         raise SystemExit(f"El SHA-256 de {PESOS} no coincide con el publicado.")
-
-
-def area(p: np.ndarray) -> float:
-    x, y = p[:, 0], p[:, 1]
-    return 0.5 * abs(np.dot(x, np.roll(y, 1)) - np.dot(y, np.roll(x, 1)))
-
-
-def _cruz(u, v) -> float:
-    """Componente z del producto vectorial de dos vectores del plano."""
-    return float(u[0] * v[1] - u[1] * v[0])
-
-
-def interseccion(p: np.ndarray, q: np.ndarray) -> float:
-    """Área común de dos cuadriláteros convexos (recorte de Sutherland-Hodgman)."""
-    sentido = 1.0 if _cruz(q[1] - q[0], q[2] - q[1]) > 0 else -1.0
-    poligono = [tuple(v) for v in p]
-    for i in range(len(q)):
-        a, b = q[i], q[(i + 1) % len(q)]
-        entrada, poligono = poligono, []
-        if not entrada:
-            break
-
-        def dentro(v, a=a, b=b):
-            return sentido * _cruz(b - a, np.asarray(v) - a) >= 0
-
-        for j, v in enumerate(entrada):
-            w = entrada[(j + 1) % len(entrada)]
-            dv, dw = dentro(v), dentro(w)
-            if dv:
-                poligono.append(v)
-            if dv != dw:
-                v_, w_ = np.asarray(v), np.asarray(w)
-                d1 = _cruz(b - a, v_ - a)
-                d2 = _cruz(b - a, w_ - a)
-                poligono.append(tuple(v_ + (w_ - v_) * d1 / (d1 - d2)))
-    return area(np.array(poligono)) if len(poligono) >= 3 else 0.0
 
 
 def unir_duplicados(cajas: list[np.ndarray], conf: list[float]) -> list[int]:

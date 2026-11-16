@@ -72,6 +72,8 @@ En cada conjunto de evaluación, por separado (DOTA validación, PNOA-desarrollo
 * **Falsas alarmas típicas:** las 30 de mayor confianza, clasificadas a mano (pasarelas, vehículos, marcas del suelo, sombras…).
 * **Calidad de la caja:** en los aciertos, error de longitud y de anchura en metros frente a la etiqueta. La Fase 3 depende de esto para medir aviones.
 
+Detalles fijados en la decisión D30: acierto con IoU de 0,5 o más, AP con interpolación de 101 puntos, remuestreo por teselas fijas de 1.024 px, y categoría de tamaño de cada detección tomada de su propia caja.
+
 **Cambio de dominio** = diferencia de AP50 y de F1 entre DOTA validación y PNOA-prueba, para A y B. **Recuperación** = cuánto de esa diferencia cierra C.
 
 ## 7. Criterios de aceptación

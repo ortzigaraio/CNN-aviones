@@ -178,6 +178,7 @@ source = { editable = "." }
 dependencies = [
     { name = "duckdb" },
     { name = "mcp" },
+    { name = "numpy" },
     { name = "pandas" },
     { name = "pyarrow" },
     { name = "pyyaml" },
@@ -204,6 +205,7 @@ vision = [
 requires-dist = [
     { name = "duckdb", specifier = ">=2.0.0" },
     { name = "mcp", specifier = ">=2.3.0" },
+    { name = "numpy", specifier = ">=2.5.4" },
     { name = "pandas", specifier = ">=3.1.1" },
     { name = "pyarrow", specifier = ">=26.0.1" },
     { name = "pyyaml" },
