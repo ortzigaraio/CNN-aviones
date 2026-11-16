@@ -45,6 +45,7 @@ Ficheros Parquet (formato de tablas por columnas) en `data/adsb/`, versionados c
 | `n_aviones` | entero | Aviones distintos. |
 | `desequilibrio` | decimal | `abs(n_llegadas − n_salidas) / (n_llegadas + n_salidas)`. Si es alto, faltan movimientos. |
 | `n_puntos_tierra` | entero o nulo | Posiciones recibidas en tierra (solo fuentes con trazas). |
+| `fuente` | texto | `opensky_rest`, `opensky_trino` o `adsblol`. |
 
 `data/adsb/aeronaves.parquet`: `icao24`, `matricula`, `tipo_oaci`, `fabricante`, `modelo`, `operador`, `fecha_base` (mes de la copia de la base de aeronaves).
 
