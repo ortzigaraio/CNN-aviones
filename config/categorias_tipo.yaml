@@ -1,9 +1,10 @@
 # Tipo OACI de aeronave -> categoría por longitud (docs/specs/fase-1b.md, sección 3).
 #
 # Umbrales de la spec: ligero < 20 m · regional 20-30 m · pasillo_unico 30-45 m ·
-# fuselaje_ancho > 45 m. La categoría se asigna SOLO por la longitud total, aunque el
-# nombre no case con el uso comercial del avión (p. ej. un Embraer 190 o un Q400 salen
-# como pasillo_unico; un B757, de pasillo único, sale como fuselaje_ancho; un
+# fuselaje_ancho > 45 m. En los límites (decisión D19): 20 m es regional, 30 m es
+# pasillo_unico y 45 m es pasillo_unico. La categoría se asigna SOLO por la longitud
+# total, aunque el nombre no case con el uso comercial del avión (p. ej. un Embraer 190
+# o un Q400 salen como pasillo_unico; un B757, de pasillo único, sale como fuselaje_ancho; un
 # Gulfstream IV, reactor de negocios, sale como regional).
 #
 # AVISO: las longitudes salen del conocimiento de quien escribió este fichero y NO

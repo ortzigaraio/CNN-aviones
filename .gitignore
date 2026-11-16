@@ -12,6 +12,8 @@ __pycache__/
 .ruff_cache/
 
 # Datos: los gestiona DVC, en git solo los ficheros .dvc y .gitignore
-/data/*
-!/data/*.dvc
-!/data/.gitignore
+# (las carpetas no se ignoran, para que git y DVC vean los .dvc de cualquier nivel)
+/data/**
+!/data/**/
+!/data/**/*.dvc
+!/data/**/.gitignore

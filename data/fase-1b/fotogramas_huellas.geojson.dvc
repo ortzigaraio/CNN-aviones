@@ -1,0 +1,5 @@
+outs:
+- md5: 3e1cd26f283564feb52b076faffacc4b
+  size: 41312
+  hash: md5
+  path: fotogramas_huellas.geojson

@@ -1,0 +1,5 @@
+outs:
+- md5: 0abfee9778c4895a78bdf2959dec2714
+  size: 18969
+  hash: md5
+  path: detecciones_05m.geojson

@@ -1,0 +1,5 @@
+outs:
+- md5: d1593e64eb3a1ac6b184042a8260ef5c
+  size: 7259
+  hash: md5
+  path: mosaico_fotogramas.geojson

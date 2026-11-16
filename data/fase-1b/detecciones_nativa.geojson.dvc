@@ -1,0 +1,5 @@
+outs:
+- md5: 23ccf7e809fd8d4a3f4cb2f83451476f
+  size: 24258
+  hash: md5
+  path: detecciones_nativa.geojson

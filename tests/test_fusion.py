@@ -107,7 +107,7 @@ def test_en_tierra_casos_basicos():
             ("aaa003", "2023-07-28 10:30"),  # llega dentro del intervalo: débil
             ("aaa004", "2023-07-28 06:00"),  # se va antes del intervalo: no aparece
             ("aaa005", "2023-07-28 12:00"),  # llega después: no aparece
-            ("aaa007", "2023-07-26 08:00"),  # llega y no se va en la ventana: fuerte
+            ("aaa007", "2023-07-26 08:00"),  # llega y no se va en la ventana: débil (D18)
         ]
     )
     salidas = _eventos(
@@ -117,7 +117,7 @@ def test_en_tierra_casos_basicos():
             ("aaa003", "2023-07-28 15:00"),
             ("aaa004", "2023-07-28 08:00"),
             ("aaa005", "2023-07-28 13:00"),
-            ("aaa006", "2023-07-29 09:00"),  # sin llegada en la ventana: fuerte, llegada nula
+            ("aaa006", "2023-07-29 09:00"),  # sin llegada en la ventana: débil (D18), llegada nula
         ]
     )
     tabla = inferir_en_tierra(llegadas, salidas, T_MIN, T_MAX)
@@ -129,10 +129,22 @@ def test_en_tierra_casos_basicos():
     assert filas["aaa001"].salida == _t("2023-07-28 14:00")
     assert filas["aaa002"].verdad == "debil"
     assert filas["aaa003"].verdad == "debil"
-    assert filas["aaa006"].verdad == "fuerte"
+    assert filas["aaa006"].verdad == "debil"
     assert pd.isna(filas["aaa006"].llegada)
-    assert filas["aaa007"].verdad == "fuerte"
+    assert filas["aaa007"].verdad == "debil"
     assert pd.isna(filas["aaa007"].salida)
+
+
+def test_en_tierra_sin_un_extremo_observado_es_debil_aunque_cubra_todo():
+    # D18: verdad fuerte exige ver la llegada y la salida. Una estancia que cubre de
+    # sobra el intervalo pero a la que le falta un extremo (hueco de cobertura o fuera
+    # de la ventana) queda como débil.
+    llegadas = _eventos([("ggg001", "2023-07-21 08:00"), ("ggg003", "2023-07-27 20:00")])
+    salidas = _eventos([("ggg002", "2023-08-04 20:00"), ("ggg003", "2023-07-29 09:00")])
+    filas = _por_icao(inferir_en_tierra(llegadas, salidas, T_MIN, T_MAX))
+    assert filas["ggg001"].verdad == "debil"  # sin salida observada
+    assert filas["ggg002"].verdad == "debil"  # sin llegada observada
+    assert filas["ggg003"].verdad == "fuerte"  # ambos extremos vistos
 
 
 def test_en_tierra_el_margen_es_estricto():

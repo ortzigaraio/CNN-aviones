@@ -52,9 +52,10 @@ def inferir_en_tierra(
     """Devuelve la tabla en_tierra (sin tipo ni categoría).
     llegadas y salidas: columnas icao24, instante (UTC).
 
-    * fuerte: llegó antes de t_min - margen (o antes de la ventana) y no se fue hasta
-      después de t_max + margen (o después de la ventana).
-    * debil: su estancia solapa [t_min, t_max] sin cumplir lo anterior.
+    * fuerte: se vio su llegada, antes de t_min - margen, y su salida, después de
+      t_max + margen (decisión D18: hacen falta los dos extremos observados).
+    * debil: su estancia solapa [t_min, t_max] sin cumplir lo anterior, incluidas las
+      estancias a las que les falta la llegada o la salida (nulas en la tabla).
     Un avión aparece como mucho una vez; si tiene varias estancias que solapan el
     intervalo, se queda la primera y es débil. Los aviones sin ningún evento en la
     ventana no aparecen. t_min y t_max deben llevar zona horaria.
@@ -88,8 +89,10 @@ def inferir_en_tierra(
         llegada, salida = solapan[0]
         fuerte = (
             len(solapan) == 1
-            and (llegada is None or llegada < ini - margen)
-            and (salida is None or salida > fin + margen)
+            and llegada is not None
+            and salida is not None
+            and llegada < ini - margen
+            and salida > fin + margen
         )
         filas.append((icao24, llegada, salida, "fuerte" if fuerte else "debil"))
 

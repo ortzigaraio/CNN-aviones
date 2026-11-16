@@ -16,6 +16,14 @@ dev = [
     "ruff",
     "dvc",
 ]
+geo = [
+    "rasterio>=1.5.2",
+]
+vision = [
+    "torch>=2.15.0",
+    "torchvision>=0.29.2",
+    "ultralytics>=8.4.214",
+]
 
 [build-system]
 requires = ["hatchling"]
@@ -39,3 +47,13 @@ exclude = ["*.md"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"
+
+# PyTorch solo para CPU en el grupo «vision» (sin las ruedas de CUDA, que ocupan varios GB).
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
