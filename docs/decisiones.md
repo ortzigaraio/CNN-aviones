@@ -32,6 +32,7 @@ Formato: fecha, decisión, alternativas descartadas, motivo. Las decisiones de d
 | D26 | 2026-11-16 | El mosaico se genera en el PC del autor con los guiones (`scripts/fase_1b/`). Los guiones de un solo uso no llevan tests; el código reutilizable va a `src/` con tests. `torch` de solo CPU hasta la Fase 2. | Remoto de DVC ya. | No depende de credenciales ni de elegir remoto (dudas 18, 21 y 22). |
 | D27 | 2026-11-16 | Regla D17, detalles: un «silencio» son 10 minutos o más sin puntos (provisional hasta validar con datos); el principio y el final de una traza no cuentan como silencio; la salida también exige estar por debajo de 1.000 m y a menos de 10 km. La elevación del aeródromo (`elevacion_m`) se añadirá con el primer adaptador, con fuente citada. | Fijar el silencio a la vista de los datos de la Fase 1b. | Dudas 1 a 4 de la Fase 1. Se valida con un día y un aeropuerto distintos de los de la Fase 1b. |
 | D28 | 2026-11-16 | En el repo no se guardan filas reales de la base de aeronaves de OpenSky; los tests usan filas ficticias con el formato real. La tabla `cobertura` lleva columna `fuente`. | Guardar una muestra real pequeña. | Licencia de la base sin verificar y repo público (dudas 6 y 7 de la Fase 1). |
+| D29 | 2026-11-16 | La Fase 3 tiene dos niveles. **Tamaño** (obligatorio): categoría por medidas de la caja, validada en PNOA contra el conteo manual y ADS-B. **Tipo**: clasificador de 20 tipos con MAR20, evaluado solo dentro de MAR20. No hay nivel de tipos civiles finos. | Clasificador de modelos civiles con FAIR1M, como pedía el encargo. | FAIR1M no tiene licencia localizable; MAR20 solo tiene tipos militares. El tamaño sí se puede contrastar con ADS-B. Resuelve el pendiente «taxonomía de tipos». |
 
 ## Pendientes de decidir
 
@@ -39,4 +40,3 @@ Formato: fecha, decisión, alternativas descartadas, motivo. Las decisiones de d
 |---|---|---|
 | Remoto de DVC (propuesta: una carpeta o disco en el PC del autor) | Autor | Al descargar los primeros datos (Fase 1b) |
 | Bases y ejercicios para anomalías | Fable, con la cobertura ADS-B medida en la Fase 1 | Spec de la Fase 5 |
-| Taxonomía de tipos (ver revisión del encargo, punto 1) | Fable | Spec de la Fase 3 |
